@@ -1,6 +1,6 @@
 package com.bridgelabz.statecensus;
 
-public class CSVStateCensus 
+public class CSVStateCensus
 {
 	public String state;
     public long population;
