@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import org.junit.Test;
 
+import com.bridgelabz.statecensus.CSVCustomException;
 import com.bridgelabz.statecensus.StateCensusAnalyzer;
 import com.opencsv.exceptions.CsvValidationException;
 
@@ -22,7 +23,7 @@ public class IndianStateCensusTest
 	 }
 	 
 	 @Test
-	 public void checkCensus_IsCorrect()
+	 public void checkCensus_IsCorrect() throws CSVCustomException
 	 {
 		    StateCensusAnalyzer isc = new StateCensusAnalyzer();
 	        assertTrue(isc.checkFileIfExists());

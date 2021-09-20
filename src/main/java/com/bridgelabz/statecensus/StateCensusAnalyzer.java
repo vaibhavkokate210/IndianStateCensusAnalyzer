@@ -44,13 +44,15 @@ public class StateCensusAnalyzer
 	            return (sca.csc.size());
 	    }
 	    
-	    public boolean checkFileIfExists()
+	    public boolean checkFileIfExists() throws CSVCustomException
 	    {
 	        File file = new File("C:\\Users\\Jeeva\\Desktop\\BridgeLabz-java\\IndianStateCensusAnalyzer\\Files\\IndiaStateCensusData.csv");
 	        if (file.exists()){
 	                return true;
 	        }
 	        else
-	            return false;
+	        {
+	        	throw new CSVCustomException("CSV file not found");
+	        }
 	    }
 }
