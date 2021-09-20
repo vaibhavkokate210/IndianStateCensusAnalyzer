@@ -40,4 +40,17 @@ public class IndianStateCensusTest
 	            e.getMessage();
 	        }
 	    }
+	 
+	 @Test
+	    public void check_ForDelimiter(){
+	        try {
+	        	StateCensusAnalyzer isc = new StateCensusAnalyzer();
+	            isc.loadingCSVData();
+	            assertEquals(29,isc.checkState());
+	        }
+	        catch (Exception e)
+	        {
+	            e.getMessage();
+	        }
+	    }
 }

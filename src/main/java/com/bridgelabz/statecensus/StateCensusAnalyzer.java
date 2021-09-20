@@ -7,7 +7,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 
+import com.opencsv.CSVParser;
+import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReader;
+import com.opencsv.CSVReaderBuilder;
 import com.opencsv.exceptions.CsvValidationException;
 
 public class StateCensusAnalyzer 
@@ -17,30 +20,38 @@ public class StateCensusAnalyzer
 
 	public void loadingCSVData() throws IOException, CsvValidationException, CSVCustomException
 	{
-        FileReader fr = new FileReader("C:\\Users\\Jeeva\\Desktop\\BridgeLabz-java\\IndianStateCensusAnalyzer\\Files\\IndiaStateCensusData.csv");
-        CSVReader csvReader = new CSVReader(fr);
-        String[] nextLine;
+		try {
+            FileReader fr = new FileReader("C:\\Nikhil\\bridgelabz\\IndianStateCensus\\CSVFiles\\IndiaStateCensusData.csv");
+            CSVParser parser = new CSVParserBuilder().withSeparator(',').build();
+            CSVReader csvReader = new CSVReaderBuilder(fr).withCSVParser(parser).build();
 
-        nextLine = csvReader.readNext();
-        while ((nextLine = csvReader.readNext()) != null) 
-        {
-            Iterator<String> it = Arrays.stream(nextLine).iterator();
-            String state = it.next();
-            String population = it.next();
-            String areaInSqKm = it.next();
-            String DensityPerSqKm = it.next();
-            try
-            {
-            temp = new CSVStateCensus(state, Long.parseLong(population), Long.parseLong(areaInSqKm), Integer.parseInt(DensityPerSqKm));
-            csc.add(temp);
+
+            String[] nextLine;
+
+            nextLine = csvReader.readNext();
+            while ((nextLine = csvReader.readNext()) != null) {
+
+                Iterator<String> it = Arrays.stream(nextLine).iterator();
+                String state = it.next();
+                String population = it.next();
+                String areaInSqKm = it.next();
+                String DensityPerSqKm = it.next();
+
+                try{
+                    temp = new CSVStateCensus(state, Long.parseLong(population), Long.parseLong(areaInSqKm), Integer.parseInt(DensityPerSqKm));
+                    csc.add(temp);
+                }
+                catch (Exception e){
+                    throw new CSVCustomException("Type incoorect");
+                }
             }
-            catch(Exception e)
-            {
-            	throw new CSVCustomException("Incorrect type");
-            }
+            System.out.println();
         }
-        System.out.println();
-    }
+		catch (Exception e)
+		{
+            throw new CSVCustomException("Delimiter Error");
+         }
+   }
 	
 	
 	    public int checkState() throws CsvValidationException, IOException, CSVCustomException 
