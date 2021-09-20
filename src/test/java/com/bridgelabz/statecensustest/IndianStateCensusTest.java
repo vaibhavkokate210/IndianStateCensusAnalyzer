@@ -14,7 +14,7 @@ import com.opencsv.exceptions.CsvValidationException;
 public class IndianStateCensusTest 
 {
 	 @Test
-	 public void checksState_NumberOfState() throws CsvValidationException, IOException 
+	 public void checksState_NumberOfState() throws CsvValidationException, IOException, CSVCustomException 
 	 {
 		 StateCensusAnalyzer sca = new StateCensusAnalyzer();
 		 int count=sca.checkState();
@@ -28,4 +28,16 @@ public class IndianStateCensusTest
 		    StateCensusAnalyzer isc = new StateCensusAnalyzer();
 	        assertTrue(isc.checkFileIfExists());
 	 }
+	 
+	 @Test
+	    public void checking_If_FileCorrect_ButTypeIncorrect(){
+	        try {
+	        	StateCensusAnalyzer isc = new StateCensusAnalyzer();
+	            isc.loadingCSVData();
+	            assertEquals(29,isc.checkState());
+	        }
+	        catch (Exception e){
+	            e.getMessage();
+	        }
+	    }
 }
