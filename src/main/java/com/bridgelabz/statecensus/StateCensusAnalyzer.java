@@ -20,7 +20,6 @@ public class StateCensusAnalyzer
 
 	public void loadingCSVData() throws IOException, CsvValidationException, CSVCustomException
 	{
-		try {
             FileReader fr = new FileReader("C:\\Nikhil\\bridgelabz\\IndianStateCensus\\CSVFiles\\IndiaStateCensusData.csv");
             CSVParser parser = new CSVParserBuilder().withSeparator(',').build();
             CSVReader csvReader = new CSVReaderBuilder(fr).withCSVParser(parser).build();
@@ -29,6 +28,18 @@ public class StateCensusAnalyzer
             String[] nextLine;
 
             nextLine = csvReader.readNext();
+            try{
+                if (nextLine[0].equals("state") && nextLine[1].equals("population") && nextLine[2].equals("areaInSqKm") && nextLine[3].equals("DensityPerSqKm")  ){
+                }
+                else{
+                    throw new CSVCustomException("Incorrect header");
+                }
+            }
+            catch (CSVCustomException e){
+                throw new CSVCustomException("Incorrect header");
+            }
+            
+            
             while ((nextLine = csvReader.readNext()) != null) {
 
                 Iterator<String> it = Arrays.stream(nextLine).iterator();
@@ -47,11 +58,6 @@ public class StateCensusAnalyzer
             }
             System.out.println();
         }
-		catch (Exception e)
-		{
-            throw new CSVCustomException("Delimiter Error");
-         }
-   }
 	
 	
 	    public int checkState() throws CsvValidationException, IOException, CSVCustomException 

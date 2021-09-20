@@ -53,4 +53,18 @@ public class IndianStateCensusTest
 	            e.getMessage();
 	        }
 	    }
+	 
+	 @Test
+	    public void checking_HeaderIsCorrect(){
+	        try {
+	        	StateCensusAnalyzer isc = new StateCensusAnalyzer();
+	            isc.loadingCSVData();
+	            assertEquals(29,isc.checkState());
+	        }
+	        catch (Exception e){
+	            e.getMessage();
+	        }
+	    }
+	 
+	 
 }
