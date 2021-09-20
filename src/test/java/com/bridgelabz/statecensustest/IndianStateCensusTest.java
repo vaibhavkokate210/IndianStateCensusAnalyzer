@@ -8,6 +8,7 @@ import java.io.IOException;
 import org.junit.Test;
 
 import com.bridgelabz.statecensus.CSVCustomException;
+import com.bridgelabz.statecensus.IndianStateCode;
 import com.bridgelabz.statecensus.StateCensusAnalyzer;
 import com.opencsv.exceptions.CsvValidationException;
 
@@ -65,6 +66,11 @@ public class IndianStateCensusTest
 	            e.getMessage();
 	        }
 	    }
-	 
+	 @Test 
+	    public void checkingIf_ReadProperly_FromCsv() throws CsvValidationException, IOException, CSVCustomException
+	    {
+	        IndianStateCode isc = new IndianStateCode();
+	        assertEquals(37,isc.checkStateData());
+	    }
 	 
 }
