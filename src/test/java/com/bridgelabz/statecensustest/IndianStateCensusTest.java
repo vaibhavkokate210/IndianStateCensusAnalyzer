@@ -1,6 +1,7 @@
 package com.bridgelabz.statecensustest;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 
@@ -18,5 +19,12 @@ public class IndianStateCensusTest
 		 int count=sca.checkState();
 		 System.out.println(count);
 		 assertEquals((long)29,(long)count);
+	 }
+	 
+	 @Test
+	 public void checkCensus_IsCorrect()
+	 {
+		    StateCensusAnalyzer isc = new StateCensusAnalyzer();
+	        assertTrue(isc.checkFileIfExists());
 	 }
 }

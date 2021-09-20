@@ -1,5 +1,6 @@
 package com.bridgelabz.statecensus;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -41,5 +42,15 @@ public class StateCensusAnalyzer
 	    	    StateCensusAnalyzer sca = new StateCensusAnalyzer();
 	            sca.loadingCSVData();
 	            return (sca.csc.size());
+	    }
+	    
+	    public boolean checkFileIfExists()
+	    {
+	        File file = new File("C:\\Users\\Jeeva\\Desktop\\BridgeLabz-java\\IndianStateCensusAnalyzer\\Files\\IndiaStateCensusData.csv");
+	        if (file.exists()){
+	                return true;
+	        }
+	        else
+	            return false;
 	    }
 }
