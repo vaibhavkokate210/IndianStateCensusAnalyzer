@@ -1,5 +1,6 @@
 package com.bridgelabz.statecensus;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -44,5 +45,14 @@ public class IndianStateCode
         }
         System.out.println();
 
+    }
+    public int fileExistsOrNot() throws CSVCustomException {
+        File file = new File("C:\\Users\\Jeeva\\Desktop\\BridgeLabz-java\\IndianStateCensusAnalyzer\\Files\\StateCode.csv");
+        if (file.exists()){
+            return 1;
+        }
+        else {
+            throw new CSVCustomException("File not found");
+        }
     }
 }
