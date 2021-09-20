@@ -87,4 +87,17 @@ public class IndianStateCensusTest
 	            e.printStackTrace();
 	        }
 	    }
+	 
+	 @Test
+	    public void checkingStateFile_IfFileIsCorrect_But_TypeIncorrect()
+	 {
+	        try {
+	            IndianStateCode isc = new IndianStateCode();
+	            isc.loadingStateDataFromCSV();
+	            assertEquals(37,isc.checkStateData());
+	        }
+	        catch (Exception e){
+	            e.getMessage();
+	        }
+	    }
 }

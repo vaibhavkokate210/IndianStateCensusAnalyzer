@@ -18,13 +18,13 @@ public class IndianStateCode
 	ArrayList<CSVStates> scd = new ArrayList<>();
 	CSVStates temp;
 
-    public int checkStateData() throws CsvValidationException, IOException {
+    public int checkStateData() throws CsvValidationException, IOException, CSVCustomException {
         IndianStateCode asc = new IndianStateCode();
         asc.loadingStateDataFromCSV();
         System.out.println(asc.scd.size());
         return (asc.scd.size());
     }
-    public void loadingStateDataFromCSV() throws IOException, CsvValidationException {
+    public void loadingStateDataFromCSV() throws IOException, CsvValidationException, CSVCustomException {
 
         FileReader fr = new FileReader("C:\\Users\\Jeeva\\Desktop\\BridgeLabz-java\\IndianStateCensusAnalyzer\\Files\\StateCode.csv");
         CSVParser parser = new CSVParserBuilder().withSeparator(',').build();
@@ -39,9 +39,15 @@ public class IndianStateCode
             String population = it.next();
             String areaInSqKm = it.next();
             String DensityPerSqKm = it.next();
-
-            temp = new CSVStates(Integer.parseInt(state), population, Integer.parseInt(areaInSqKm), DensityPerSqKm);
-            scd.add(temp);
+            try
+            {
+               temp = new CSVStates(Integer.parseInt(state), population, Integer.parseInt(areaInSqKm), DensityPerSqKm);
+               scd.add(temp);
+            }
+            catch(Exception e)
+            {
+            	throw new CSVCustomException("Type incorrect");
+            }
         }
         System.out.println();
 
